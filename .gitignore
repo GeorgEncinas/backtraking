@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .idea/backtraking.iml
+.idea/workspace.xml
 .Python
 env/
 build/
