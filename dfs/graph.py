@@ -4,16 +4,21 @@ import numpy as np
 
 class Graph:
 
-    def __init__(self, list_ver, list_edg):
-        #self.list_vertex = []
-        #self.list_edge = []
+    def __init__(self, list_ver=[], list_edg=[]):
         self.list_vertex = list_ver
         self.list_edge = list_edg
         self.j = 1
 
     def insert_vertex(self, vertex):
         if(isinstance(vertex, Vertex) and vertex not in self.list_vertex):
-            self.list_vertex.append(vertex)
+            size_list_vertex = len(self.list_vertex)
+            if(size_list_vertex > 0):
+                vertex_1 = self.list_vertex[size_list_vertex - 1]
+                self.list_vertex.append(vertex)
+                edge = Edge(vertex_1, vertex)
+                self.list_edge.append(edge)
+            else:
+                self.list_vertex.append(vertex)
 
     def insert_edge(self, edge):
         if edge is not None and isinstance(edge, Edge):

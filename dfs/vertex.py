@@ -1,7 +1,7 @@
 
 class Vertex(object):
 
-    def __init__(self, imu, data_sensor):
+    def __init__(self, imu, data_sensor=None):
         self.position = imu
         self.sensor_data = data_sensor
         #state of north, south, east, west
