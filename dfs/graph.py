@@ -7,16 +7,26 @@ class Graph:
     def __init__(self, list_ver=[], list_edg=[]):
         self.list_vertex = list_ver
         self.list_edge = list_edg
+        self.states_node = []
+        #es la lista de las prioridades de las posiciones
+        self.list_privilege = [180, 90, 270, 0]
         self.j = 1
 
-    def insert_vertex(self, vertex):
+    def insert_vertex(self, vertex, direction, angles):
         if(isinstance(vertex, Vertex) and vertex not in self.list_vertex):
             size_list_vertex = len(self.list_vertex)
             if(size_list_vertex > 0):
                 vertex_1 = self.list_vertex[size_list_vertex - 1]
+                #mark the oposite direction of the last inserted vertex
+                vertex_1.mark(direction)
+                if direction < 180:
+                    vertex.mark(direction + 180)
+                else:
+                    vertex.mark(direction - 180)
                 self.list_vertex.append(vertex)
                 edge = Edge(vertex_1, vertex)
                 self.list_edge.append(edge)
+                self.states_node = angles
             else:
                 self.list_vertex.append(vertex)
 
@@ -30,9 +40,24 @@ class Graph:
     def get_list_edge(self):
         return self.list_edge
 
-    def dfs(self, orig, dest):
+    #busca el angulo de direccion
+    #recibe los angulos del vertice a los cuales se puede desplazar
+    def dfs(self, orig, angles):
+        #falta modificar
+        dest = None
         if(len(self.list_vertex) > 0 and len(self.list_edge) > 0):
-            self.look(orig, [], dest)
+            angle_movement = self.look(orig, [], dest)
+        else:
+            #si es el primer nodo
+            angle_movement = self.get_angle_direction(orig, angles)
+        return angle_movement
+
+    def get_angle_direction(self, node, angles):
+
+        for angle in angles:
+            if not angle:
+                node.mark()
+        pass
 
     def look(self, vertex, stack, dest):
         if(not vertex.get_state(0)):
