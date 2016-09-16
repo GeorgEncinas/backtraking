@@ -1,8 +1,10 @@
 from vertex import Vertex
 
 class Edge(object):
-    def __init__(self, vertex_1, vertex_2):
+    def __init__(self, vertex_1, vertex_2, direction):
         self.weigth = 0
+        #direction of vertex1 to vertex2
+        self.direction = direction
         self.v1 = vertex_1
         self.v2 = vertex_2
 

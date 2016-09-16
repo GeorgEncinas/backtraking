@@ -1,26 +1,38 @@
 from graph import Graph
 from vertex import Vertex
 from edge import Edge
+from path.generation_data import Generator_Data
 
-v1 = Vertex(("x1", "y1"), "data_sensor1")
-v2 = Vertex(("x2", "y2"), "data_sensor2")
-v3 = Vertex(("x3", "y3"), "data_sensor3")
-v4 = Vertex(("x4", "y4"), "data_sensor4")
-v5 = Vertex(("x5", "y5"), "data_sensor5")
-v6 = Vertex(("x6", "y6"), "data_sensor6")
-edge1 = Edge(v1, v2)
-edge2 = Edge(v1, v3)
-edge3 = Edge(v2, v3)
-edge4 = Edge(v1, v4)
-edge5 = Edge(v2, v5)
-edge6 = Edge(v4, v5)
-edge7 = Edge(v4, v6)
-print v6 == v6
-list_vertex = [v1,v2,v3,v4, v5, v6]
-graph = Graph(list_vertex, [edge1, edge2, edge3, edge4, edge5, edge6, edge7])
+list_data = [
+    [[[True, False, False],'N'], False],
+    [[[False, True, False],'N'], False],
+    [[[False, True, False],'W'], False],
+    [[[True, False, True],'S'], False],
+    [[[False, False, True],'S'], False],
+    [[[True, False, True],'W'], False],
+    [[[False, False, True],'N'], False],
+    [[[False, True, False],'E'], False],
+    [[[True, True, False],'N'], False],
+    [[[False, False, False],'N'], False],
+    [[[True, False, True],'S'], False],
+    [[[False, False, True],'W'], False],
+    [[[False, False, True],'N'], False],
+    [[[False, False, True],'E'], False],
+    [[[False, True, False],'S'], False],
+    [[[False, True, False],'E'], False],
+    [[[True, True, False],'N'], False],
+    [[[False, False, False],'N'], False],
+    [[[True, False, True],'S'], False],
+    [[[False, False, True],'W'], False],
+    [[[False, True, False],'N'], False],
+    [[[False, False, True],'W'], False],
+    [[[False, False, True],'N'], False],
+    [[[False, True, True],'E'], False],
+    [[[True, True, True],'N'], True]
+]
 
-#graph.insert_vertex(v1)
-#graph.insert_edge(edge)
-#print graph.get_list_vertex()
-#print graph.get_list_edge()
-graph.dfs(v3, v6)
+generator_data = Generator_Data()
+for data in list_data:
+    dir_m = generator_data.generate_node(data)
+    print dir_m
+print 'graph: ', generator_data.graph
